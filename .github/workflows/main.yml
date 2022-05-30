@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   call-workflow-passing-data:
-    uses: vishnuremidio/reusableWorkFlow/.github/workflows/main.yml@v3
+    uses: vishnuremidio/reusableWorkFlow/.github/workflows/main.yml@main
     with:
       username: vishnu
   # This workflow contains a single job called "build"
