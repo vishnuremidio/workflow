@@ -30,7 +30,7 @@ jobs:
         # id: create_tag
         uses: jaywcjlove/create-tag-action@main
         with:
-          version: ${{GITHUB_ENV.RELEASE_VERSION}}
+          version: ${{RELEASE_VERSION}}
           test: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'   
           
     # create tags 
