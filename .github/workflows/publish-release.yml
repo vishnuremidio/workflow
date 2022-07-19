@@ -25,10 +25,8 @@ jobs:
         run: |
           BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
           VERSION=${BRANCH_NAME#hotfix/}
-          echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
-      - name: Create Tag
-        id: create_tag
-        uses: vishnuremidio/workflow/.github/workflows/cut-release.yml@main
+          echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV      
+      - uses: vishnuremidio/workflow/.github/workflows/cut-release.yml@main
         with:
           tag_name: ${{env.RELEASE_VERSION}}
           # test: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'   
