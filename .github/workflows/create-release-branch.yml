@@ -1,0 +1,17 @@
+name: Create release branch
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-version-string:
+        type: text
+        required: true
+        description: version to release
+        
+        
+jobs:
+  create-release-branch:
+    name: Create release branch
+    uses: GitHub-Actions/create-release-branch-workflow/.github/workflows/create-release-branch.yml@develop
+    with:
+      release-version-string: ${{ github.event.inputs.release-version-string }}
