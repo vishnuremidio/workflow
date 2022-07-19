@@ -26,7 +26,7 @@ jobs:
           BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
           VERSION=${BRANCH_NAME#hotfix/}
           echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
-      - name: Create Tag
+  create Tag:
         uses: vishnuremidio/workflow/.github/workflows/cut-release.yml@main
         with:
           tag_name: ${{env.RELEASE_VERSION}}
