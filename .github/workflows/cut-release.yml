@@ -1,11 +1,10 @@
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_call:
+    inputs:
+      tag_name:
+        required: true
+        type: string
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -23,5 +22,5 @@ jobs:
         id: create_tag
         uses: jaywcjlove/create-tag-action@main
         with:
-          version: v1.10.0
+          version: ${{ inputs.tag_name }}
           test: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'

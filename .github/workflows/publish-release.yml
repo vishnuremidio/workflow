@@ -28,9 +28,9 @@ jobs:
           echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
       - name: Create Tag
         id: create_tag
-        uses: jaywcjlove/create-tag-action@main
+        uses: vishnuremidio/workflow/.github/workflows/cut-release.yml@main
         with:
-          version: ${{env.RELEASE_VERSION}}
+          tag_name: ${{env.RELEASE_VERSION}}
           # test: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'   
           
     # create tags 
