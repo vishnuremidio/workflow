@@ -27,10 +27,10 @@ jobs:
           VERSION=${BRANCH_NAME#hotfix/}
           echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
        - name: Create Tag
-        id: create_tag
+        # id: create_tag
         uses: jaywcjlove/create-tag-action@main
         with:
-          version: $VERSION
+          version: ${{env.RELEASE_VERSION}}
           test: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'   
           
     # create tags 
