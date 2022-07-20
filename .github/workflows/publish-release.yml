@@ -35,6 +35,8 @@ jobs:
           custom_tag: ${{ env.RELEASE_VERSION }}
       - name: Update Major tag
         uses: nowactions/update-majorver@v1
+        with:
+          github_token: ${{ secrets. GITHUB_TOKEN }}
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Create Release
