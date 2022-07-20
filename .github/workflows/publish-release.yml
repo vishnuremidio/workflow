@@ -28,13 +28,20 @@ jobs:
           BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
           VERSION=${BRANCH_NAME#hotfix/}
           echo "RELEASE_VERSION=$VERSION" 
-      - name: createTag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v6.0
+      - name: Create Tag
+        id: create_tag
+        uses: avakar/tag-and-release@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: false
-          custom_tag: ${{ env.RELEASE_VERSION }}
+          tag_name: ${{ RELEASE_VERSION }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: createTag
+      #   id: tag_version
+      #   uses: mathieudutour/github-tag-action@v6.0
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     default_bump: false
+      #     custom_tag: ${{ env.RELEASE_VERSION }}
           
   # createTag:
         
