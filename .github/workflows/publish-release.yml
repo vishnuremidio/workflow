@@ -22,9 +22,6 @@ jobs:
           BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
           VERSION=${BRANCH_NAME#release/}
           echo "RELEASE_VERSION=$VERSION" 
-        uses: vishnuremidio/workflow/.github/workflows/cut-release.yml@main
-        with:
-          tag_name: ${{env.RELEASE_VERSION}}
       - name: Extract version from branch name (for hotfix branches)
         if: startsWith(github.event.pull_request.head.ref, 'hotfix/')
         run: |
