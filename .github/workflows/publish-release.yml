@@ -6,8 +6,8 @@ on:
       - main
     types:
       - closed
-env:
-  RELEASE_VERSION: v0.0.0
+# env:
+#   RELEASE_VERSION: v0.0.0
 
 jobs:
   release:
@@ -31,6 +31,12 @@ jobs:
           BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
           VERSION=${BRANCH_NAME#hotfix/}
           echo "RELEASE_VERSION=$VERSION" 
+      - name: createTag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: ${{ env.RELEASE_VERSION }}
   # createTag:
         
           # test: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'   
