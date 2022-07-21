@@ -41,12 +41,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: false
-          custom_tag: ${{ env.RELEASE_VERSION }}
-      - name: Update Major tag
-        uses: nowactions/update-majorver@v1
-        with:
-          github_token: ${{ secrets. GITHUB_TOKEN }}
-          default_bump: false
           custom_tag: ${{ env.MAJOR_VERSION }}
       - name: Checkout code
         uses: actions/checkout@v2
