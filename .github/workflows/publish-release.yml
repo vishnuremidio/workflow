@@ -36,7 +36,7 @@ jobs:
           default_bump: false
           custom_tag: ${{ env.RELEASE_VERSION }}
       - name: createMajorTag
-        id: tag_version
+        id: mtag_version
         uses: mathieudutour/github-tag-action@v6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
