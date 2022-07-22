@@ -44,7 +44,7 @@ jobs:
                 await github.git.deleteRef({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  ref: "tags/"+${{ env.MAJOR_VERSION }}
+                  ref: "tags/v"+${{ env.MAJOR_VERSION }}
                 })
             } catch (e) {
               console.log("The nightly tag doesn't exist yet: " + e)
@@ -52,7 +52,7 @@ jobs:
             await github.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: "refs/tags/"+${{ env.MAJOR_VERSION }},
+              ref: "refs/tags/v"+${{ env.MAJOR_VERSION }},
               sha: context.sha
             })
       # - name: createMajorTag
