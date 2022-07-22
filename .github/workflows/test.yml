@@ -22,6 +22,6 @@ jobs:
             await github.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: "refs/tags/nightly",
+              ref: "refs/tags/nightly1",
               sha: context.sha
             })
