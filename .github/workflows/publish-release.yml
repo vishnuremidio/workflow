@@ -35,13 +35,33 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: false
           custom_tag: ${{ env.RELEASE_VERSION }}
-      - name: createMajorTag
-        id: mtag_version
-        uses: mathieudutour/github-tag-action@v6.0
+      - name: Advance nightly tag
+        uses: actions/github-script@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: false
-          custom_tag: ${{ env.MAJOR_VERSION }}
+          github-token: ${{secrets.GITHUB_TOKEN}}          
+          script: |
+            try {
+                await github.git.deleteRef({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  ref: "tags/"+${{ env.MAJOR_VERSION }}
+                })
+            } catch (e) {
+              console.log("The nightly tag doesn't exist yet: " + e)
+            }
+            await github.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "refs/tags/"+${{ env.MAJOR_VERSION }},
+              sha: context.sha
+            })
+      # - name: createMajorTag
+      #   id: mtag_version
+      #   uses: mathieudutour/github-tag-action@v6.0
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     default_bump: false
+      #     custom_tag: ${{ env.MAJOR_VERSION }}
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Create Release
